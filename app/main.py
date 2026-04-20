@@ -78,11 +78,11 @@ def handle_client(client_socket : socket.socket, file_folder: str | None = None)
                     print("Size: ", size)
 
 
-                    response_headers = b"Content-Type: application/octet-stream\r\n" + b"Content-Length: " + str(size).encode("ascii") + b"\r\n"
 
                     with open(f"{file_folder}{file_name}", "r") as file:
                         content = file.read()
                     
+                    response_headers = b"Content-Type: application/octet-stream\r\n" + b"Content-Length: " + str(len(content)).encode("ascii") + b"\r\n"
                     response_body = content.encode("utf-8")
                     print("Content: ", response_body)
 
